@@ -6,6 +6,7 @@ import HomePage from '../index';
 import messages from '../messages';
 
 describe('<HomePage />', () => {
+  it('Todos los contadores están inicializados en 0 ', () => {});
   it('should render the page message', () => {
     const renderedComponent = shallow(<HomePage />);
     expect(
