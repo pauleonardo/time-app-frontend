@@ -76,6 +76,7 @@
     "lodash": "4.17.11",
     "minimist": "1.2.0",
     "moment": "^2.24.0",
+    "moment-timezone": "^0.5.23",
     "prop-types": "15.6.2",
     "react": "16.6.0",
     "react-dom": "16.6.0",
@@ -89,6 +90,7 @@
     "redux-saga": "0.16.2",
     "reselect": "4.0.0",
     "sanitize.css": "4.1.0",
+    "socket.io-client": "^2.2.0",
     "styled-components": "4.0.2",
     "warning": "4.0.2"
   },

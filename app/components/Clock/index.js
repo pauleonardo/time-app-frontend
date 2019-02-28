@@ -7,7 +7,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-// import styled from 'styled-components';
+import 'moment-timezone';
 import './styles.scss';
 
 /* eslint-disable react/prefer-stateless-function */
@@ -22,42 +22,42 @@ class Clock extends React.Component {
     this.updateTime = this.updateTime.bind(this);
     this.updateNumber = this.updateNumber.bind(this);
     this.state = {
-      city: '...',
+      name: '...',
       time: 0,
       previoTime: 0,
       latitude: '*',
       longitude: '*',
+      timezone: 'America/Santiago',
+      temperature: 0,
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps !== this.props) {
-      this.setState(previoState => ({
-        city: nextProps.city,
+      this.setState(previo => ({
+        name: nextProps.name,
         time: nextProps.time,
+        previoTime: previo.time,
         latitude: nextProps.latitude,
         longitude: nextProps.longitude,
-        previoTime: previoState.time,
+        timezone: nextProps.timezone,
+        temperature: nextProps.temperature,
       }));
     }
   }
 
-  componentDidUpdate(n, prevState) {
-    if (prevState !== this.state) {
-      this.updateTime();
-    }
+  componentDidUpdate() {
+    this.updateTime();
   }
 
-  componentDidMount() {
-    const { previoTime, time } = this.state;
-    if (previoTime !== time) {
-      this.updateTime();
-    }
-  }
-
-  returnFormated() {
-    const { time } = this.state;
-    return moment(time).format('HH:MM:SS');
+  returnFormated(time) {
+    const tz = this.state.timezone;
+    if (!tz) return '00:00:00';
+    return moment
+      .unix(time)
+      .tz(tz)
+      .format('hh:mm:ss')
+      .toString();
   }
 
   updateTime() {
@@ -74,7 +74,7 @@ class Clock extends React.Component {
   }
 
   updateContainer(container, newTime) {
-    if (!container) return;
+    if (!container || !newTime) return;
     const time = newTime.split('');
     if (time.length === 1) {
       time.unshift('0');
@@ -118,28 +118,22 @@ class Clock extends React.Component {
   }
 
   getHours(time) {
-    return moment(time)
-      .hours()
-      .toString();
+    return this.returnFormated(time).split(':')[0];
   }
 
   getMinutes(time) {
-    return moment(time)
-      .minutes()
-      .toString();
+    return this.returnFormated(time).split(':')[1];
   }
 
   getSeconds(time) {
-    return moment(time)
-      .seconds()
-      .toString();
+    return this.returnFormated(time).split(':')[2];
   }
 
   render() {
-    const { city, latitude, longitude } = this.state;
+    const { name, latitude, longitude, temperature } = this.state;
     return (
       <div className="container">
-        <div className="title">{city}</div>
+        <div className="title">{name}</div>
         <div className="clock">
           <div className="clock__hours" ref="hours">
             <div className="clock__first">
@@ -172,16 +166,21 @@ class Clock extends React.Component {
           <div className="longitude">LOG: {longitude}</div>
           <div className="latitude">LAT: {latitude}</div>
         </div>
+        <div className="container-temperature">
+          <div className="temprature"> ºC: {temperature}</div>
+        </div>
       </div>
     );
   }
 }
 
 Clock.propTypes = {
-  city: PropTypes.string,
+  name: PropTypes.string,
   time: PropTypes.number,
   latitude: PropTypes.number,
   longitude: PropTypes.number,
+  timezone: PropTypes.string,
+  temperature: PropTypes.number,
 };
 
 export default Clock;

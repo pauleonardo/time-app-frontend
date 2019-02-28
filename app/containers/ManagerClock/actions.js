@@ -49,7 +49,7 @@ export function updateTimeAction() {
 export function updatedTimeAction(time) {
   return {
     type: UPDATED_TIME,
-    time,
+    payload: time,
   };
 }
 
