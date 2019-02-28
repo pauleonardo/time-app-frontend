@@ -167,7 +167,7 @@ class Clock extends React.Component {
           <div className="latitude">LAT: {latitude}</div>
         </div>
         <div className="container-temperature">
-          <div className="temprature"> ºC: {temperature}</div>
+          <div className="temprature"> ºF: {temperature}</div>
         </div>
       </div>
     );

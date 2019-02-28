@@ -16,7 +16,7 @@ function createSocketChannel(socket) {
   });
 }
 
-const socketServerURL = 'http://localhost:3001';
+const socketServerURL = process.env.SERVERSOCKET || 'http://localhost:3001';
 
 function connectToServer() {
   const socket = io(socketServerURL, {
