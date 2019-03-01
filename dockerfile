@@ -6,6 +6,4 @@ EXPOSE 3000
 
 COPY . .
 
-RUN sleep 10
-
 CMD ["npm", "start"]
