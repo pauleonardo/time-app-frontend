@@ -1,0 +1,29 @@
+.container-managerClock{
+  display: grid;
+  grid-template-rows: 65vh 35vh;
+  height: 100vh;
+  .container-managerClock__others{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    & .container .clock {
+      height: 6vh;
+      font-size: 6vh;
+      line-height: 9.4vh;
+    }
+    & .container  .container-temperature {
+      font-size: 2vh;
+    }
+    & .container .title{
+      font-size: 4vh;
+    }
+    & .container .container-longitude-latitude{
+      font-size: 2vh;
+    }
+    & .container .clock .clock__tick {
+      line-height: 9vh;
+    }
+    & .container .clock & & &.move {
+      animation: shortMove linear 1s infinite;
+    }
+  }
+}

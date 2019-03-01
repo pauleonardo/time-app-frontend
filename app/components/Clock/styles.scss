@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+.container{
+  display: grid;
+  justify-items: center;
+  .title{
+    font-size: 10vh;
+  }
+  .container-longitude-latitude{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 10vh;
+    grid-gap: 1em;
+  }
+  .container-temperature{
+      font-size: 3em;
+  }
+  .clock{
+    font-family: 'Orbitron', sans-serif;
+    height: 20vh;
+    color: black;
+    font-size: 20vh;
+    line-height: 23.4vh;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    &:before, &:after{
+      content: '';
+      width: 7ch;
+      height: 3vh;
+      position: absolute;
+      z-index: 2;
+    }
+    &:after{
+      bottom: 0;
+    }
+    & > div {
+      display: flex;
+    }
+    .clock__tick {
+      line-height: 17vh;
+    }
+    .clock__tick--hidden {
+      opacity: 0;
+    }
+  }
+}
+
+.move {
+  animation: move linear 1s infinite;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(0vh);
+  }
+  to {
+    transform: translateY(-102%);
+  }
+}
