@@ -26,6 +26,6 @@ La aplicación se expone en el puerto 3000.
 
     SERVERSOCKET: Define a donde el cliente socket se debe conectar
 
-### Link de inspiración
+### Link de inspiración
 
 https://codepen.io/dervondenbergen/pen/dVPOwB
